@@ -40,7 +40,10 @@
           <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה ר&quot;מ [Status]" />
         </Label.Content>       
       </Label>
-      <TextBox x:Name="tbDedaultFieldName" Grid.Column="1"/>
+      <TextBox x:Name="tbDedaultFieldName" Grid.Column="1" Style="{StaticResource tbSimple}"/>
     </Grid>
+
+    <CheckBox x:Name="cbAddCommentField" Style="{StaticResource ckbSimple}" Content="האם להוסיף שדות הערות" />
+    <GroupBox x:Name="gbComments" />
   </StackPanel>
 </Window>

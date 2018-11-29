@@ -30,5 +30,29 @@
       <Setter Property="VerticalContentAlignment" Value="Center" />
       <Setter Property="Width" Value="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor,   AncestorType={x:Type ComboBox}} }" />
     </Style>
-  </Application.Resources>
+
+    <Style x:Key="tbSimple" TargetType="{x:Type TextBox}">
+      <Setter Property="Height" Value="30" />
+      <Setter Property="Margin" Value="30,10,20,10" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+
+    <Style x:Key="ckbSimple" TargetType="{x:Type CheckBox}">
+      <Style.Resources>
+        <Style TargetType="{x:Type Path}">
+          <Setter Property="FlowDirection" Value="LeftToRight" />
+        </Style>
+      </Style.Resources>
+      <Setter Property="Height" Value="30" />
+      <Setter Property="Margin" Value="30,10,20,10" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="HorizontalContentAlignment" Value="Left" />
+    </Style>
+    
+   
+    </Application.Resources>
 </Application>
