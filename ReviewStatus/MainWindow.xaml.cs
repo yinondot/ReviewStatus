@@ -21,9 +21,36 @@ namespace ReviewStatus
    /// </summary>
    public partial class MainWindow : Window
    {
+      MainViewModel vm;
       public MainWindow()
       {
+         vm = new MainViewModel();
+         this.DataContext = vm;
          InitializeComponent();
+        
+      }
+
+    
+
+      private void TbLengthCommentField_TextChanged(object sender, TextChangedEventArgs e)
+      {
+         if (cbAddCommentField.IsChecked==true)
+         {
+            var tb = sender as TextBox;
+            int result;
+            int.TryParse(tb.Text, out result);
+            if (result != 0)
+            {
+               vm.IsValid = true;
+
+            }
+            else
+            {
+               vm.IsValid = false;
+            }
+         }
+       
+        
       }
    }
 }

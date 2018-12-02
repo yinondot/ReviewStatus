@@ -1,12 +1,13 @@
-﻿<Window x:Class="ReviewStatus.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:ReviewStatus" xmlns:vm="clr-namespace:ReviewStatus.ViewModels" 
- xmlns:converters="clr-namespace:ReviewStatus.Converters"       mc:Ignorable="d" Title="MainWindow" Height="500" Width="450">
+﻿<Window x:Class="ReviewStatus.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:ReviewStatus" xmlns:vm="clr-namespace:ReviewStatus.ViewModels" xmlns:converters="clr-namespace:ReviewStatus.Converters" xmlns:validatonrules="clr-namespace:ReviewStatus.ValidationRules" mc:Ignorable="d" Title="MainWindow" Height="500" Width="450">
 
-  <Window.DataContext>
+  <!--<Window.DataContext>
     <vm:MainViewModel />
-  </Window.DataContext>
+  </Window.DataContext>-->
   <Window.Resources>
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:CheckBoxToVisibilityConverter x:Key="CheckBoxToVisibilityConverter" />
+
+    <validatonrules:NumberValidationRule x:Key="NumberValidationRule" />
   </Window.Resources>
   <StackPanel x:Name="stckMain" FlowDirection="RightToLeft">
     <Grid>
@@ -16,10 +17,7 @@
       </Grid.ColumnDefinitions>
 
       <Button x:Name="btnChooseFile" Style="{StaticResource btnSimple}" Content="בחר קובץ" />
-      <Label x:Name="tbChosenFileName" Style="{StaticResource lblSimple}" 
-             HorizontalAlignment="Center"
-             Margin="10,10,30,10"
-             Grid.Column="1" Content="{Binding ChosenFile}" />
+      <Label x:Name="tbChosenFileName" Style="{StaticResource lblSimple}" HorizontalAlignment="Center" Margin="10,10,30,10" Grid.Column="1" Content="{Binding ChosenFile}" />
     </Grid>
     <Grid>
       <Grid.ColumnDefinitions>
@@ -43,13 +41,13 @@
       <Label x:Name="lblDefaultName" Style="{StaticResource lblSimple}">
         <Label.Content>
           <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה ר&quot;מ [Status]" />
-        </Label.Content>       
+        </Label.Content>
       </Label>
-      <TextBox x:Name="tbDedaultFieldName" Grid.Column="1" Style="{StaticResource tbSimple}"/>
+      <TextBox x:Name="tbDedaultFieldName" Grid.Column="1" Style="{StaticResource tbSimple}" />
     </Grid>
 
     <CheckBox x:Name="cbAddCommentField" Style="{StaticResource ckbSimple}" Content="האם להוסיף שדות הערות" Template="{DynamicResource CheckBoxControlTemplate1}" />
-    <GroupBox x:Name="gbComments" Style="{StaticResource gbSimple}" Visibility="{Binding ElementName=cbAddCommentField, Path=IsChecked, Converter={StaticResource CheckBoxToVisibilityConverter}, Mode=OneWay}"  >
+    <GroupBox x:Name="gbComments" Style="{StaticResource gbSimple}" Visibility="{Binding ElementName=cbAddCommentField, Path=IsChecked, Converter={StaticResource CheckBoxToVisibilityConverter}, Mode=OneWay}">
       <StackPanel FlowDirection="RightToLeft">
         <Grid>
           <Grid.ColumnDefinitions>
@@ -57,9 +55,9 @@
             <ColumnDefinition Width="5*" />
           </Grid.ColumnDefinitions>
           <Label Style="{StaticResource lblSimple}">
-          <Label.Content>
-            <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה הערות [Comment]" />
-          </Label.Content>
+            <Label.Content>
+              <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה הערות [Comment]" />
+            </Label.Content>
           </Label>
           <TextBox x:Name="tbDedaultCommentName" Grid.Column="1" Style="{StaticResource tbSimple}" />
         </Grid>
@@ -73,7 +71,16 @@
               <AccessText TextWrapping="Wrap" Text="אורך שדה הערות" />
             </Label.Content>
           </Label>
-          <TextBox x:Name="tbLengthCommentField" Grid.Column="1" Style="{StaticResource tbSimple}" Text="50"/>
+          <TextBox x:Name="tbLengthCommentField" ToolTip="{Binding RelativeSource={RelativeSource Self},
+      Path=(Validation.Errors)[0].ErrorContent}" Grid.Column="1" Style="{StaticResource tbSimple}" TextChanged="TbLengthCommentField_TextChanged">
+            <TextBox.Text>
+              <Binding Path="CommentFieldLength" UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                  <validatonrules:NumberValidationRule />
+                </Binding.ValidationRules>
+              </Binding>
+            </TextBox.Text>
+          </TextBox>
         </Grid>
       </StackPanel>
     </GroupBox>
@@ -83,9 +90,9 @@
         <ColumnDefinition Width="5*" />
         <ColumnDefinition Width="5*" />
       </Grid.ColumnDefinitions>
-   
-    <Button x:Name="btnRun" Style="{StaticResource btnSimple}" Content="הרץ"/>
-    <Button x:Name="btnCancel" Grid.Column="1" Style="{StaticResource btnSimple}" Content="בטל" />
+
+      <Button x:Name="btnRun" Style="{StaticResource  btnSimple}" Content="הרץ" Command="{Binding RunCommand, UpdateSourceTrigger=PropertyChanged}"/>
+      <Button x:Name="btnCancel" Grid.Column="1" Style="{StaticResource btnSimple}" Content="בטל" />
     </Grid>
   </StackPanel>
 </Window>

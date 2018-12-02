@@ -35,6 +35,7 @@
     <Style x:Key="tbSimple" TargetType="{x:Type TextBox}">
       <Setter Property="Height" Value="30" />
       <Setter Property="Margin" Value="30,10,20,10" />
+      <Setter Property="MaxLength" Value="20" />
       <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="VerticalContentAlignment" Value="Center" />
       <Setter Property="HorizontalContentAlignment" Value="Center" />

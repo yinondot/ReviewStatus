@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using ReviewStatus.Commands;
 using ReviewStatus.CommonValues;
 
 namespace ReviewStatus.ViewModels
@@ -27,8 +29,13 @@ namespace ReviewStatus.ViewModels
          }
       }
 
+      #region Commands
      
-      public  MainViewModel()
+      public RunCommand RunCommand { get; set; }
+      #endregion
+
+
+      public MainViewModel()
       {
          try
          {
@@ -46,7 +53,7 @@ namespace ReviewStatus.ViewModels
 
       private void Initialize()
       {
-         
+         RunCommand = new RunCommand(this);
       }
 
       private async Task InitializeAsync()
@@ -59,7 +66,6 @@ namespace ReviewStatus.ViewModels
      
 
       private string chosenFile="INITIALIZED.COM";
-
       public string ChosenFile
       {
          get { return chosenFile; }
@@ -67,6 +73,39 @@ namespace ReviewStatus.ViewModels
             if (chosenFile != value)
             {
                chosenFile = value;
+               OnPropertyChanged();
+            }
+            
+         }
+      }
+
+      private int commentFieldLength;
+
+      public int CommentFieldLength
+      {
+         get { return commentFieldLength; }
+         set {
+            if (commentFieldLength != value)
+            {
+               commentFieldLength = value;
+               OnPropertyChanged();
+            }
+          
+
+         }
+      }
+
+
+
+      private bool isValid;
+
+      public bool IsValid
+      {
+         get { return isValid; }
+         set {
+            if (IsValid != value)
+            {
+               isValid = value;
                OnPropertyChanged();
             }
             
