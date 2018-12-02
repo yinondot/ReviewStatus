@@ -6,7 +6,7 @@
   <Window.Resources>
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:CheckBoxToVisibilityConverter x:Key="CheckBoxToVisibilityConverter" />
-
+    <converters:GetFileNameConverter x:Key="GetFileNameConverter" />
     <validatonrules:NumberValidationRule x:Key="NumberValidationRule" />
   </Window.Resources>
   <StackPanel x:Name="stckMain" FlowDirection="RightToLeft">
@@ -16,8 +16,8 @@
         <ColumnDefinition Width="5*" />
       </Grid.ColumnDefinitions>
 
-      <Button x:Name="btnChooseFile" Style="{StaticResource btnSimple}" Content="בחר קובץ" />
-      <Label x:Name="tbChosenFileName" Style="{StaticResource lblSimple}" HorizontalAlignment="Center" Margin="10,10,30,10" Grid.Column="1" Content="{Binding ChosenFile}" />
+      <Button x:Name="btnChooseFile" Style="{StaticResource btnSimple}" Content="בחר קובץ" Command="{Binding ChooseFileCommand }"/>
+      <TextBlock TextWrapping="Wrap"  x:Name="tbChosenFileName" Style="{StaticResource tblSimple}" HorizontalAlignment="Center" Margin="10,10,30,10"   Grid.Column="1" Text="{Binding ChosenFile ,Converter={StaticResource GetFileNameConverter}}" />
     </Grid>
     <Grid>
       <Grid.ColumnDefinitions>

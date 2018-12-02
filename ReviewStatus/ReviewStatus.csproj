@@ -55,9 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ChooseFileCommand.cs" />
     <Compile Include="Commands\RunCommand.cs" />
     <Compile Include="CommonValues\Values.cs" />
     <Compile Include="Converters\CheckBoxToVisibilityConverter.cs" />
+    <Compile Include="Converters\GetFileNameConverter.cs" />
     <Compile Include="ValidationRules\NumberValidationRule.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -99,6 +101,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{858b8d9b-fd4b-4770-8485-76e2d0d4e5ba}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

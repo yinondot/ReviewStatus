@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using ReviewStatus.Commands;
 using ReviewStatus.CommonValues;
+using Services;
 
 namespace ReviewStatus.ViewModels
 {
    public class MainViewModel : INotifyPropertyChanged
    {
+      ideaServices ideaServices;
       private ReadOnlyCollection<int> numberOfFields;
-
       public ReadOnlyCollection<int> NumberOfFields
       {
          get { return numberOfFields; }
@@ -29,12 +30,17 @@ namespace ReviewStatus.ViewModels
          }
       }
 
-      #region Commands
-     
-      public RunCommand RunCommand { get; set; }
+      #region Commands   
+      public RunCommand RunCommand { get; set; }  
+      public ChooseFileCommand ChooseFileCommand { get; set; }
       #endregion
 
-
+      #region command methods
+      internal void ChooseFileMethod()
+      {
+         ChosenFile = ideaServices.ChoosePrimaryFile();
+      }
+      #endregion
       public MainViewModel()
       {
          try
@@ -54,6 +60,8 @@ namespace ReviewStatus.ViewModels
       private void Initialize()
       {
          RunCommand = new RunCommand(this);
+         ChooseFileCommand = new ChooseFileCommand(this);
+         ideaServices = new ideaServices();
       }
 
       private async Task InitializeAsync()
@@ -65,7 +73,7 @@ namespace ReviewStatus.ViewModels
 
      
 
-      private string chosenFile="INITIALIZED.COM";
+      private string chosenFile="";
       public string ChosenFile
       {
          get { return chosenFile; }
@@ -95,6 +103,8 @@ namespace ReviewStatus.ViewModels
          }
       }
 
+     
+  
 
 
       private bool isValid;
