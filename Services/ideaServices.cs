@@ -67,12 +67,12 @@ namespace Services
                if (defaultCommentFieldName != null)
                {
                   field = table.NewField();
-                  eqn = "'a'";
+               
 
                   field.name = defaultCommentFieldName + i;
                   field.description = "";
-                  field.type = COMDBLib.VBFieldType.WI_CHAR_FIELD;
-                  field.Equation = eqn;
+                  field.type = COMDBLib.VBFieldType.WI_EDIT_CHAR;
+                  field.Equation = "\"\"";
                   field.Length = lengthOfCommentField;
                   task.AppendField(field);
                }
