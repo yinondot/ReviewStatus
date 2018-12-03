@@ -47,8 +47,7 @@ namespace ReviewStatus.Commands
    
       public void Execute(object parameter)
       {
-         //Task task=new Task(()=> Vm.RunMethod());
-         // task.Start();
+         Vm.RunMethod();
       
 
       }

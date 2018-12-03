@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using ReviewStatus.Commands;
@@ -47,6 +48,8 @@ namespace ReviewStatus.ViewModels
          ideaServices = new ideaServices();
       }
 
+    
+
       private async Task InitializeAsync()
       {
 
@@ -64,6 +67,31 @@ namespace ReviewStatus.ViewModels
       {
          ChosenFile = ideaServices.ChoosePrimaryFile();
          activateWindow(this, new EventArgs());
+      }
+
+     public async Task  RunMethod()
+      {
+         try
+         {
+            ideaServices.ShowWindow();
+            if (isChecked)
+            {
+               ideaServices.Run(chosenFile, Convert.ToInt32(selectedNumberOfFieldsToAdd), DefaultStatusName, DefaultCommentName, int.Parse(CommentFieldLength));
+            }
+            else
+            {
+               ideaServices.Run(chosenFile, Convert.ToInt32(selectedNumberOfFieldsToAdd), DefaultStatusName);
+            }
+            activateWindow(this,new EventArgs());
+            MessageBox.Show("הסתיים בהצלחה");
+         }
+         catch (Exception ex)
+         {
+
+            MessageBox.Show(ex.Message + "On Run method");
+         }
+ 
+         
       }
       #endregion
 
