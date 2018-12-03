@@ -27,7 +27,11 @@ namespace ReviewStatus
          vm = new MainViewModel();
          this.DataContext = vm;
          InitializeComponent();
-        
+         vm.activateWindow += delegate (object sender, EventArgs e)
+           {
+              this.Activate();
+           };
+         
       }
 
     
@@ -41,16 +45,21 @@ namespace ReviewStatus
             int.TryParse(tb.Text, out result);
             if (result != 0)
             {
-               vm.IsValid = true;
+               vm.IsFieldLengthValid = true;
 
             }
             else
             {
-               vm.IsValid = false;
+               vm.IsFieldLengthValid = false;
             }
          }
        
         
+      }
+
+      private void Window_Loaded(object sender, RoutedEventArgs e)
+      {
+         this.Topmost = true;
       }
    }
 }

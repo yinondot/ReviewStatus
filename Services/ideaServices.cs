@@ -33,5 +33,9 @@ namespace Services
             UtilityCasewareIdea.DisposeCom(commonDialogs);
          }
       }
+      public static void ShowWindow()
+      {
+         UtilityCasewareIdea.ShowWindow();
+      }
    }
 }

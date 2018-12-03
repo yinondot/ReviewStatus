@@ -1,4 +1,4 @@
-﻿<Window x:Class="ReviewStatus.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:ReviewStatus" xmlns:vm="clr-namespace:ReviewStatus.ViewModels" xmlns:converters="clr-namespace:ReviewStatus.Converters" xmlns:validatonrules="clr-namespace:ReviewStatus.ValidationRules" mc:Ignorable="d" Title="MainWindow" Height="500" Width="450">
+﻿<Window x:Class="ReviewStatus.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:ReviewStatus" xmlns:vm="clr-namespace:ReviewStatus.ViewModels" xmlns:converters="clr-namespace:ReviewStatus.Converters" xmlns:validatonrules="clr-namespace:ReviewStatus.ValidationRules" mc:Ignorable="d" Title="MainWindow" Height="500" Width="450" Loaded="Window_Loaded">
 
   <!--<Window.DataContext>
     <vm:MainViewModel />
@@ -8,6 +8,8 @@
     <converters:CheckBoxToVisibilityConverter x:Key="CheckBoxToVisibilityConverter" />
     <converters:GetFileNameConverter x:Key="GetFileNameConverter" />
     <validatonrules:NumberValidationRule x:Key="NumberValidationRule" />
+
+
   </Window.Resources>
   <StackPanel x:Name="stckMain" FlowDirection="RightToLeft">
     <Grid>
@@ -16,8 +18,8 @@
         <ColumnDefinition Width="5*" />
       </Grid.ColumnDefinitions>
 
-      <Button x:Name="btnChooseFile" Style="{StaticResource btnSimple}" Content="בחר קובץ" Command="{Binding ChooseFileCommand }"/>
-      <TextBlock TextWrapping="Wrap"  x:Name="tbChosenFileName" Style="{StaticResource tblSimple}" HorizontalAlignment="Center" Margin="10,10,30,10"   Grid.Column="1" Text="{Binding ChosenFile ,Converter={StaticResource GetFileNameConverter}}" />
+      <Button x:Name="btnChooseFile" Style="{StaticResource btnSimple}" Content="בחר קובץ" Command="{Binding ChooseFileCommand }" />
+      <TextBlock TextWrapping="Wrap" x:Name="tbChosenFileName" Style="{StaticResource tblSimple}" HorizontalAlignment="Center" Grid.Column="1" Text="{Binding ChosenFile ,Converter={StaticResource GetFileNameConverter}}" />
     </Grid>
     <Grid>
       <Grid.ColumnDefinitions>
@@ -72,13 +74,9 @@
             </Label.Content>
           </Label>
           <TextBox x:Name="tbLengthCommentField" ToolTip="{Binding RelativeSource={RelativeSource Self},
-      Path=(Validation.Errors)[0].ErrorContent}" Grid.Column="1" Style="{StaticResource tbSimple}" TextChanged="TbLengthCommentField_TextChanged">
+      Path=(Validation.Errors)[0].ErrorContent}" Grid.Column="1" Style="{StaticResource tbSimple}">
             <TextBox.Text>
-              <Binding Path="CommentFieldLength" UpdateSourceTrigger="PropertyChanged">
-                <Binding.ValidationRules>
-                  <validatonrules:NumberValidationRule />
-                </Binding.ValidationRules>
-              </Binding>
+              <Binding Path="CommentFieldLength" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged" />
             </TextBox.Text>
           </TextBox>
         </Grid>
@@ -91,7 +89,7 @@
         <ColumnDefinition Width="5*" />
       </Grid.ColumnDefinitions>
 
-      <Button x:Name="btnRun" Style="{StaticResource  btnSimple}" Content="הרץ" Command="{Binding RunCommand, UpdateSourceTrigger=PropertyChanged}"/>
+      <Button x:Name="btnRun" Style="{StaticResource  btnSimple}" Content="הרץ" Command="{Binding RunCommand, UpdateSourceTrigger=PropertyChanged}" />
       <Button x:Name="btnCancel" Grid.Column="1" Style="{StaticResource btnSimple}" Content="בטל" />
     </Grid>
   </StackPanel>

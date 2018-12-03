@@ -24,7 +24,7 @@ namespace ReviewStatus.Commands
       public bool CanExecute(object parameter)
       {
 
-         return Vm.IsValid;
+         return Vm.IsFieldLengthValid;
         
        
       

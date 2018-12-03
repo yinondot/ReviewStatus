@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Services;
 
 namespace ReviewStatus
 {
@@ -13,5 +14,21 @@ namespace ReviewStatus
    /// </summary>
    public partial class App : Application
    {
+      public App()
+      {
+         try
+         {
+            //Task.Factory.StartNew(()=> UtilityCasewareIdea.ShowWindow());
+            ideaServices.ShowWindow();
+         }
+         catch (Exception ex)
+         {
+
+            MessageBox.Show(ex.Message + "App Start");
+         }
+
+      }
+
    }
 }
+

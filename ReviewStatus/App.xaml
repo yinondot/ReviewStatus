@@ -16,8 +16,9 @@
     </Style>
     <Style x:Key="tblSimple" TargetType="{x:Type TextBlock}">
       <Setter Property="Height" Value="40" />
-      <Setter Property="Margin" Value="30,10,30,10" />
+      <Setter Property="Margin" Value="30,10,30,0" />
       <Setter Property="HorizontalAlignment" Value="Left" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
       <!--<Setter Property="HorizontalContentAlignment" Value="Left" />
       <Setter Property="VerticalContentAlignment" Value="Center" />-->
     </Style>
@@ -34,9 +35,9 @@
 
 
     <Style x:Key="cbItemSimple" TargetType="{x:Type ComboBoxItem}">
-   <Setter Property="HorizontalAlignment" Value="Center" />
-      <Setter Property="VerticalContentAlignment" Value="Center" />
-      <Setter Property="Width" Value="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor,   AncestorType={x:Type ComboBox}} }" />
+   <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <!--<Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="Width" Value="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor,   AncestorType={x:Type ComboBox}} }" />-->
     </Style>
 
     <Style x:Key="tbSimple" TargetType="{x:Type TextBox}">
