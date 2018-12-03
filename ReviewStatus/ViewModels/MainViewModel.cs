@@ -19,32 +19,10 @@ namespace ReviewStatus.ViewModels
    {
       public event EventHandler activateWindow;
       ideaServices ideaServices;
-      private ReadOnlyCollection<int> numberOfFields;
-      public ReadOnlyCollection<int> NumberOfFields
-      {
-         get { return numberOfFields; }
-         set
-         {
-            if (numberOfFields != value)
-            {
-               numberOfFields = value;
-               OnPropertyChanged();
-            }
-         }
-      }
+     
+      public ReadOnlyCollection<int> NumberOfFields { get; set; }
+    
 
-      #region Commands   
-      public RunCommand RunCommand { get; set; }
-      public ChooseFileCommand ChooseFileCommand { get; set; }
-      #endregion
-
-      #region command methods
-      internal void ChooseFileMethod()
-      {
-         ChosenFile = ideaServices.ChoosePrimaryFile();
-         activateWindow(this, new EventArgs());
-      }
-      #endregion
 
       public MainViewModel()
       {
@@ -76,8 +54,84 @@ namespace ReviewStatus.ViewModels
 
       }
 
+
+      #region Commands   
+      public RunCommand RunCommand { get; set; }
+      public ChooseFileCommand ChooseFileCommand { get; set; }
+      #endregion
+      #region command methods
+      internal void ChooseFileMethod()
+      {
+         ChosenFile = ideaServices.ChoosePrimaryFile();
+         activateWindow(this, new EventArgs());
+      }
+      #endregion
+
+
       #region bound properties
-      private string chosenFile = "kjghk";
+
+      private string defaultCommentName = "";
+      public string DefaultCommentName
+      {
+         get { return defaultCommentName; }
+         set
+         {
+            if (defaultCommentName != value)
+            {
+               defaultCommentName = value;
+               OnPropertyChanged();
+            }
+
+         }
+      }
+
+      private string defaultStatusName = "";
+      public string DefaultStatusName
+      {
+         get { return defaultStatusName; }
+         set
+         {
+            if (defaultStatusName != value)
+            {
+               defaultStatusName = value;
+               OnPropertyChanged();
+            }
+
+         }
+      }
+
+      private bool isChecked;
+      public bool IsChecked
+      {
+         get { return isChecked; }
+         set {
+            if (isChecked != value)
+            {
+               isChecked = value;
+               OnPropertyChanged();
+            }         
+         }
+      }
+
+      private object selectedNumberOfFieldsToAdd;
+      public object SelectedNumberOfFieldsToAdd
+      {
+         get { return selectedNumberOfFieldsToAdd; }
+         set {
+            //if (value==null)
+            //{
+            //   selectedNumberOfFieldsToAdd = 0;
+            //}
+            if (selectedNumberOfFieldsToAdd != value)
+            {
+               selectedNumberOfFieldsToAdd = value;
+               OnPropertyChanged();
+            }
+            
+         }
+      }
+
+      private string chosenFile = "";
       public string ChosenFile
       {
          get { return chosenFile; }
@@ -92,7 +146,6 @@ namespace ReviewStatus.ViewModels
          }
       }
 
-
       private string commentFieldLength;
       public string CommentFieldLength
       {
@@ -104,10 +157,7 @@ namespace ReviewStatus.ViewModels
                commentFieldLength = value;
 
                OnPropertyChanged();
-
             }
-
-
          }
       }
 
@@ -139,7 +189,7 @@ namespace ReviewStatus.ViewModels
 
                case "CommentFieldLength":
                   {
-                     if (CommentFieldLength==""|| CommentFieldLength == null)
+                     if (CommentFieldLength == "" || CommentFieldLength == null)
                      {
                         IsFieldLengthValid = false;
                         return result;
@@ -160,7 +210,7 @@ namespace ReviewStatus.ViewModels
                   }
                default:
                   return result;
-                 
+
             }
          }
       }

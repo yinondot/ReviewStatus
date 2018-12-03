@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ReviewStatus.CommonValues
 {
    public static class Values
-    {
-      public static List<int> NumOfFields =new List<int>() { 1, 2, 3 };
-    }
+   {
+      public static List<int> NumOfFields = new List<int>() { 1, 2, 3, 4, 5 };
+   }
 }

@@ -19,7 +19,7 @@ namespace ReviewStatus
          try
          {
             //Task.Factory.StartNew(()=> UtilityCasewareIdea.ShowWindow());
-            ideaServices.ShowWindow();
+        //    ideaServices.ShowWindow();
          }
          catch (Exception ex)
          {

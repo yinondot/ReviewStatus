@@ -59,7 +59,12 @@ namespace ReviewStatus
 
       private void Window_Loaded(object sender, RoutedEventArgs e)
       {
-         this.Topmost = true;
+         this.Activate();
+      }
+
+      private void BtnCancel_Click(object sender, RoutedEventArgs e)
+      {
+         Application.Current.Shutdown();
       }
    }
 }

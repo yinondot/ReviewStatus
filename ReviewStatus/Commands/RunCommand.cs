@@ -23,8 +23,23 @@ namespace ReviewStatus.Commands
       }
       public bool CanExecute(object parameter)
       {
-
-         return Vm.IsFieldLengthValid;
+         if (Vm.ChosenFile == "") 
+         {
+            return false;
+         }
+         if (Vm.SelectedNumberOfFieldsToAdd==null)
+         {
+            return false;
+         }
+         if (!Vm.IsChecked)
+         {
+            return Vm.DefaultStatusName != ""; 
+         }
+         else
+         {
+            return (Vm.DefaultStatusName != "")&& (Vm.DefaultCommentName != "")&& Vm.IsFieldLengthValid;
+         }
+   
         
        
       
