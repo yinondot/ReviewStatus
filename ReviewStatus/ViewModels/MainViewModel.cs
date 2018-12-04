@@ -46,6 +46,7 @@ namespace ReviewStatus.ViewModels
          RunCommand = new RunCommand(this);
          ChooseFileCommand = new ChooseFileCommand(this);
          ideaServices = new ideaServices();
+         chosenFile = ideaServices.GetOpenDataBase();
       }
 
     
@@ -98,7 +99,7 @@ namespace ReviewStatus.ViewModels
 
       #region bound properties
 
-      private string defaultCommentName = "";
+      private string defaultCommentName = "COMMENT";
       public string DefaultCommentName
       {
          get { return defaultCommentName; }
@@ -113,7 +114,7 @@ namespace ReviewStatus.ViewModels
          }
       }
 
-      private string defaultStatusName = "";
+      private string defaultStatusName = "STATUS";
       public string DefaultStatusName
       {
          get { return defaultStatusName; }
@@ -128,7 +129,7 @@ namespace ReviewStatus.ViewModels
          }
       }
 
-      private bool isChecked;
+      private bool isChecked = true;
       public bool IsChecked
       {
          get { return isChecked; }
@@ -141,7 +142,7 @@ namespace ReviewStatus.ViewModels
          }
       }
 
-      private object selectedNumberOfFieldsToAdd;
+      private object selectedNumberOfFieldsToAdd = 3;
       public object SelectedNumberOfFieldsToAdd
       {
          get { return selectedNumberOfFieldsToAdd; }
@@ -174,7 +175,7 @@ namespace ReviewStatus.ViewModels
          }
       }
 
-      private string commentFieldLength;
+      private string commentFieldLength="50";
       public string CommentFieldLength
       {
          get { return commentFieldLength; }

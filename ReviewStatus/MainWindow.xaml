@@ -31,7 +31,7 @@
         </Style>
       </Grid.Resources>
       <Label x:Name="lblHowManyFields" Style="{StaticResource lblSimple}" Content="כמה שדות ר&quot;מ להוסיף" />
-      <ComboBox x:Name="cbHowManyFields" Grid.Column="1" Style="{StaticResource cbSimple}" ItemsSource="{Binding NumberOfFields}" Grid.ColumnSpan="2" SelectedValue="{Binding SelectedNumberOfFieldsToAdd, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+      <ComboBox x:Name="cbHowManyFields" Grid.Column="1" Style="{StaticResource cbSimple}" ItemsSource="{Binding NumberOfFields}" Grid.ColumnSpan="2" SelectedValue="{Binding SelectedNumberOfFieldsToAdd, UpdateSourceTrigger=PropertyChanged}">
 
       </ComboBox>
     </Grid>
@@ -45,10 +45,10 @@
           <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה ר&quot;מ [Status]" />
         </Label.Content>
       </Label>
-      <TextBox x:Name="tbDedaultFieldName" Grid.Column="1" Style="{StaticResource tbSimple}" Text="{Binding DefaultStatusName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+      <TextBox x:Name="tbDedaultFieldName" Grid.Column="1" Style="{StaticResource tbSimple}" Text="{Binding DefaultStatusName, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 
-    <CheckBox x:Name="cbAddCommentField" Style="{StaticResource ckbSimple}" Content="האם להוסיף שדות הערות" Template="{DynamicResource CheckBoxControlTemplate1}" IsChecked="{Binding IsChecked ,Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
+    <CheckBox x:Name="cbAddCommentField" Style="{StaticResource ckbSimple}" Content="האם להוסיף שדות הערות" Template="{DynamicResource CheckBoxControlTemplate1}" IsChecked="{Binding IsChecked ,UpdateSourceTrigger=PropertyChanged}" />
     <GroupBox x:Name="gbComments" Style="{StaticResource gbSimple}" Visibility="{Binding ElementName=cbAddCommentField, Path=IsChecked, Converter={StaticResource CheckBoxToVisibilityConverter}, Mode=OneWay}">
       <StackPanel FlowDirection="RightToLeft">
         <Grid>
@@ -61,7 +61,7 @@
               <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה הערות [Comment]" />
             </Label.Content>
           </Label>
-          <TextBox x:Name="tbDedaultCommentName" Grid.Column="1" Style="{StaticResource tbSimple}" Text="{Binding DefaultCommentName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBox x:Name="tbDedaultCommentName" Grid.Column="1" Style="{StaticResource tbSimple}" Text="{Binding DefaultCommentName,UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
         <Grid>
           <Grid.ColumnDefinitions>

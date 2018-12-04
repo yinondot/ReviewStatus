@@ -4,6 +4,7 @@
       <Setter Property="Width" Value="80" />
       <Setter Property="Height" Value="40" />
       <Setter Property="Margin" Value="30,10,10,10" />
+      <Setter Property="Background" Value="#00A5CB" />
       <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
 

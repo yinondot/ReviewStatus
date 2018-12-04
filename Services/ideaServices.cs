@@ -22,7 +22,13 @@ namespace Services
             client = new IdeaClient();
             UtilityCasewareIdea.ShowWindow();
             commonDialogs = client.CommonDialogs();
-            return commonDialogs.FileExplorer();
+           string temp= commonDialogs.FileExplorer();
+            if (temp != "")
+            {
+               client.OpenDatabase(temp);
+            }
+           
+            return temp;
 
          }
          catch (Exception)
@@ -68,7 +74,7 @@ namespace Services
                {
                   field = table.NewField();
                
-
+                 
                   field.name = defaultCommentFieldName + i;
                   field.description = "";
                   field.type = COMDBLib.VBFieldType.WI_EDIT_CHAR;
@@ -77,7 +83,9 @@ namespace Services
                   task.AppendField(field);
                }
             }
+
             task.PerformTask();
+            db.CommitDatabase();
          }
          catch (Exception ex)
          {
@@ -92,6 +100,11 @@ namespace Services
             UtilityCasewareIdea.DisposeCom(field);
             UtilityCasewareIdea.DisposeCom(task);
          }
+      }
+
+      public string GetOpenDataBase()
+      {
+         return UtilityCasewareIdea.GetCurrentDB();
       }
    }
 }
