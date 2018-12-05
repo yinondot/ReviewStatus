@@ -17,9 +17,11 @@
     </Style>
     <Style x:Key="tblSimple" TargetType="{x:Type TextBlock}">
       <Setter Property="Height" Value="40" />
-      <Setter Property="Margin" Value="30,10,30,0" />
+      <Setter Property="Margin" Value="30,10,30,10" />
+      <Setter Property="Padding" Value="0,10" />
       <Setter Property="HorizontalAlignment" Value="Left" />
       <Setter Property="VerticalAlignment" Value="Bottom" />
+      <!--<Setter Property="Background" Value="#00A5CB" />-->
       <!--<Setter Property="HorizontalContentAlignment" Value="Left" />
       <Setter Property="VerticalContentAlignment" Value="Center" />-->
     </Style>
@@ -28,7 +30,7 @@
       <Setter Property="FlowDirection" Value="LeftToRight" />
       <!--<Setter Property="Width" Value="120" />-->
       <Setter Property="Height" Value="30" />
-      <Setter Property="Margin" Value="30,10,20,10" />
+      <Setter Property="Margin" Value="30,10,40,10" />
       <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="VerticalContentAlignment" Value="Center" />
       <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -43,13 +45,16 @@
 
     <Style x:Key="tbSimple" TargetType="{x:Type TextBox}">
       <Setter Property="Height" Value="30" />
-      <Setter Property="Margin" Value="30,10,20,10" />
+      <Setter Property="Margin" Value="30,10,40,10" />
       <Setter Property="MaxLength" Value="20" />
       <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="VerticalContentAlignment" Value="Center" />
       <Setter Property="HorizontalContentAlignment" Value="Center" />
     </Style>
 
+    <Style x:Key="tbGrp" BasedOn="{StaticResource tbSimple}" TargetType="{x:Type TextBox}">
+      <Setter Property="Margin" Value="30,10,25,10" />
+    </Style>
 
     <Style x:Key="ckbSimple" TargetType="{x:Type CheckBox}">
       <Style.Resources>
