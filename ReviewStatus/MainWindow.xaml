@@ -12,6 +12,7 @@
 
   </Window.Resources>
   <StackPanel x:Name="stckMain" FlowDirection="RightToLeft">
+    
     <Grid>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="5*" />
