@@ -1,4 +1,4 @@
-﻿<Window x:Class="ReviewStatus.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:ReviewStatus" xmlns:vm="clr-namespace:ReviewStatus.ViewModels" xmlns:converters="clr-namespace:ReviewStatus.Converters" xmlns:validatonrules="clr-namespace:ReviewStatus.ValidationRules" xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework" mc:Ignorable="d" Title="Review Status" Height="600" Width="470" Loaded="Window_Loaded" ResizeMode="CanMinimize">
+﻿<Window x:Class="ReviewStatus.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:ReviewStatus" xmlns:vm="clr-namespace:ReviewStatus.ViewModels" xmlns:converters="clr-namespace:ReviewStatus.Converters" xmlns:validatonrules="clr-namespace:ReviewStatus.ValidationRules" xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework" mc:Ignorable="d" Title="ניתוח: סקירת סטטוס" Height="600" Width="470" Loaded="Window_Loaded" ResizeMode="CanMinimize" Icon="Resources/IACS Macro Icon.ico" FlowDirection="RightToLeft">
 
   <!--<Window.DataContext>
     <vm:MainViewModel />
@@ -12,14 +12,24 @@
 
   </Window.Resources>
   <StackPanel x:Name="stckMain" FlowDirection="RightToLeft">
-    <Grid Background="LightGray" FlowDirection="LeftToRight">
+    <Grid Background="LightGray" Height="100">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="40*" />
         <ColumnDefinition Width="60*" />
+        <ColumnDefinition Width="40*" />
       </Grid.ColumnDefinitions>
 
-      <Image x:Name="imgLogo" Source="Resources/iacslogo.png" Margin="30,25,30,25" />
-      <Label Grid.Column="1" Style="{StaticResource lblSimple}" Content="סקירת סטאטוס " HorizontalAlignment="Stretch" Margin="64,32,10,33" FontSize="26" FontWeight="DemiBold" />
+      <StackPanel>
+        <!--<Label Style="{StaticResource lblSimple}" Content="ניתוח:" HorizontalAlignment="Stretch" Margin="30,10,64,-5" FontSize="20" FontWeight="DemiBold" Background="#00B8860B" Height="Auto">
+         
+        </Label>-->
+        <Label Style="{StaticResource lblSimple}" Content="סקירת סטאטוס" HorizontalAlignment="Stretch" Margin="30,25,48,0" FontSize="26" FontWeight="DemiBold" Background="#00B8860B" Height="Auto">
+        
+        </Label>
+
+      </StackPanel>
+
+
+      <Image x:Name="imgLogo" Grid.Column="1" Source="Resources/iacslogo.png" Margin="20,25,40,25" />
     </Grid>
     <Grid Margin="0,20,0,0">
 
