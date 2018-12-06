@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Services;
+using ReviewStatus.CommonValues;
 
 namespace ReviewStatus
 {
@@ -29,6 +30,30 @@ namespace ReviewStatus
 
       }
 
+      private void Application_Startup(object sender, StartupEventArgs e)
+      {
+#if !DEBUG
+         if (Environment.GetCommandLineArgs().Length < 2)
+         {
+            //MessageBox.Show("מאקרו זה ניתן להרצה דרך מערכת DMR בלבד." + "\n" +
+            //    "לצורך רכישת מערכת DMR, אנא צור קשר: http://www.iacs.co.il", "IACS - מאקרו");
+            MsgBox.Alert("מאקרו זה ניתן להרצה דרך מערכת DMR בלבד." + "\n" +
+                   "לצורך רכישת מערכת DMR, אנא צור קשר: http://www.iacs.co.il", "IACS - מאקרו");
+            Application.Current.Shutdown();
+         }
+         else
+         {
+            if (Environment.GetCommandLineArgs()[1] != "3AA34AEF-8144-4606-90B3-89252AB84D37")
+            {
+               //MessageBox.Show("מאקרו זה ניתן להרצה דרך מערכת DMR בלבד." + "\n" +
+               // "לצורך רכישת מערכת DMR, אנא צור קשר: http://www.iacs.co.il", "IACS - מאקרו");
+               MsgBox.Alert("מאקרו זה ניתן להרצה דרך מערכת DMR בלבד." + "\n" +
+                     "לצורך רכישת מערכת DMR, אנא צור קשר: http://www.iacs.co.il", "IACS - מאקרו");
+               Application.Current.Shutdown();
+            }
+         }
+#endif
+      }
    }
 }
 

@@ -12,38 +12,35 @@
 
   </Window.Resources>
   <StackPanel x:Name="stckMain" FlowDirection="RightToLeft">
-    <Grid Background="LightGray">
+    <Grid Background="LightGray" FlowDirection="LeftToRight">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="35*" />
-        <ColumnDefinition Width="65*" />
+        <ColumnDefinition Width="40*" />
+        <ColumnDefinition Width="60*" />
       </Grid.ColumnDefinitions>
-    
-    <Image x:Name="imgLogo" Source="Resources/iacslogo.png" Margin="30,25" />
-      <Label Grid.Column="1" Style="{StaticResource lblSimple}" Content="REVIEW STATUS" HorizontalAlignment="Center" Margin="{Binding ElementName=imgLogo, Path=Margin}" FontSize="26" FontWeight="DemiBold"/>
+
+      <Image x:Name="imgLogo" Source="Resources/iacslogo.png" Margin="30,25,30,25" />
+      <Label Grid.Column="1" Style="{StaticResource lblSimple}" Content="סקירת סטאטוס " HorizontalAlignment="Stretch" Margin="64,32,10,33" FontSize="26" FontWeight="DemiBold" />
     </Grid>
     <Grid Margin="0,20,0,0">
-      
+
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="5*" />
         <ColumnDefinition Width="5*" />
       </Grid.ColumnDefinitions>
 
-      <Button x:Name="btnChooseFile" Style="{StaticResource btnSimple}" Content="בחר קובץ" Command="{Binding ChooseFileCommand }" />
-      <TextBlock TextWrapping="Wrap" FlowDirection="LeftToRight" x:Name="tbChosenFileName" Style="{StaticResource tblSimple}" HorizontalAlignment="Center" Grid.Column="1" Text="{Binding ChosenFile ,Converter={StaticResource GetFileNameConverter}}" />
+      <Button x:Name="btnChooseFile" Style="{StaticResource btnSimple}" Content="בחר קובץ" Command="{Binding ChooseFileCommand}" />
+      <TextBlock TextWrapping="Wrap" FlowDirection="LeftToRight" x:Name="tbChosenFileName" Style="{StaticResource tblSimple}" HorizontalAlignment="Center" Grid.Column="1" Text="{Binding ChosenFile, Converter={StaticResource GetFileNameConverter}}" />
     </Grid>
     <Grid>
+      <Grid.Resources>
+        <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource cbItemSimple}" />
+      </Grid.Resources>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="5*" />
         <ColumnDefinition Width="5*" />
       </Grid.ColumnDefinitions>
-      <Grid.Resources>
-        <Style TargetType="ComboBoxItem" BasedOn="{StaticResource cbItemSimple}">
-        </Style>
-      </Grid.Resources>
       <Label x:Name="lblHowManyFields" Style="{StaticResource lblSimple}" Content="כמה שדות ר&quot;מ להוסיף" />
-      <ComboBox x:Name="cbHowManyFields" Grid.Column="1" Style="{StaticResource cbSimple}" ItemsSource="{Binding NumberOfFields}" Grid.ColumnSpan="2" SelectedValue="{Binding SelectedNumberOfFieldsToAdd, UpdateSourceTrigger=PropertyChanged}">
-
-      </ComboBox>
+      <ComboBox x:Name="cbHowManyFields" Grid.Column="1" Style="{StaticResource cbSimple}" ItemsSource="{Binding NumberOfFields}" Grid.ColumnSpan="2" SelectedValue="{Binding SelectedNumberOfFieldsToAdd, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
     <Grid>
       <Grid.ColumnDefinitions>
@@ -51,18 +48,13 @@
         <ColumnDefinition Width="5*" />
       </Grid.ColumnDefinitions>
       <Label x:Name="lblDefaultName" Style="{StaticResource lblSimple}">
-        <Label.Content>
-          <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה ר&quot;מ [Status]" />
-        </Label.Content>
+        <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה ר&quot;מ [Status]" />
       </Label>
-      <TextBox x:Name="tbDedaultFieldName" Grid.Column="1" Style="{StaticResource tbSimple}" Text="{Binding DefaultStatusName, UpdateSourceTrigger=PropertyChanged}"/>
+      <TextBox x:Name="tbDedaultFieldName" Grid.Column="1" Style="{StaticResource tbSimple}" Text="{Binding DefaultStatusName, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 
-    <CheckBox x:Name="cbAddCommentField" Style="{StaticResource ckbSimple}" Content="האם להוסיף שדות הערות" IsChecked="{Binding IsChecked ,UpdateSourceTrigger=PropertyChanged}">
-     
-   
-    </CheckBox>
-    <GroupBox x:Name="gbComments" Style="{StaticResource gbSimple}" Visibility="{Binding ElementName=cbAddCommentField, Path=IsChecked, Converter={StaticResource CheckBoxToVisibilityConverter}, Mode=OneWay}">
+    <CheckBox x:Name="cbAddCommentField" Style="{StaticResource ckbSimple}" Content="האם להוסיף שדות הערות" IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}" />
+    <GroupBox x:Name="gbComments" Style="{StaticResource gbSimple}" Visibility="{Binding IsChecked, Converter={StaticResource CheckBoxToVisibilityConverter}, ElementName=cbAddCommentField, Mode=OneWay}">
       <StackPanel FlowDirection="RightToLeft">
         <Grid>
           <Grid.ColumnDefinitions>
@@ -70,11 +62,9 @@
             <ColumnDefinition Width="5*" />
           </Grid.ColumnDefinitions>
           <Label Style="{StaticResource lblSimple}">
-            <Label.Content>
-              <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה הערות [Comment]" />
-            </Label.Content>
+            <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה הערות [Comment]" />
           </Label>
-          <TextBox x:Name="tbDedaultCommentName" Grid.Column="1" Style="{StaticResource tbGrp}" Text="{Binding DefaultCommentName,UpdateSourceTrigger=PropertyChanged}" />
+          <TextBox x:Name="tbDedaultCommentName" Grid.Column="1" Style="{StaticResource tbGrp}" Text="{Binding DefaultCommentName, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
         <Grid>
           <Grid.ColumnDefinitions>
@@ -82,16 +72,9 @@
             <ColumnDefinition Width="5*" />
           </Grid.ColumnDefinitions>
           <Label Style="{StaticResource lblSimple}">
-            <Label.Content>
-              <AccessText TextWrapping="Wrap" Text="אורך שדה הערות" />
-            </Label.Content>
+            <AccessText TextWrapping="Wrap" Text="אורך שדה הערות" />
           </Label>
-          <TextBox x:Name="tbLengthCommentField" ToolTip="{Binding RelativeSource={RelativeSource Self},
-      Path=(Validation.Errors)[0].ErrorContent}" Grid.Column="1" Style="{StaticResource tbGrp}" >
-            <TextBox.Text>
-              <Binding Path="CommentFieldLength" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged" />
-            </TextBox.Text>
-          </TextBox>
+          <TextBox x:Name="tbLengthCommentField" ToolTip="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource Self}}" Grid.Column="1" Style="{StaticResource tbGrp}" Text="{Binding CommentFieldLength, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
         </Grid>
       </StackPanel>
     </GroupBox>
@@ -102,7 +85,7 @@
         <ColumnDefinition Width="5*" />
       </Grid.ColumnDefinitions>
 
-      <Button x:Name="btnRun" Style="{StaticResource  btnSimple}" Content="הרץ" Command="{Binding RunCommand, UpdateSourceTrigger=PropertyChanged}" />
+      <Button x:Name="btnRun" Style="{StaticResource btnSimple}" Content="הרץ" Command="{Binding RunCommand, UpdateSourceTrigger=PropertyChanged}" />
       <Button x:Name="btnCancel" Grid.Column="1" Style="{StaticResource btnSimple}" Content="בטל" Click="BtnCancel_Click" />
     </Grid>
   </StackPanel>
