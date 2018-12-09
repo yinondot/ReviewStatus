@@ -26,6 +26,7 @@ namespace Services
             if (temp != "")
             {
                client.OpenDatabase(temp); 
+               
             }
            
             return temp;

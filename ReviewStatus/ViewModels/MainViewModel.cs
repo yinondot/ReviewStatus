@@ -19,10 +19,11 @@ namespace ReviewStatus.ViewModels
    public class MainViewModel : INotifyPropertyChanged, IDataErrorInfo
    {
       public event EventHandler activateWindow;
+      public event EventHandler MinimizeWindow;
       ideaServices ideaServices;
-     
+
       public ReadOnlyCollection<int> NumberOfFields { get; set; }
-    
+
 
 
       public MainViewModel()
@@ -49,7 +50,7 @@ namespace ReviewStatus.ViewModels
          chosenFile = ideaServices.GetOpenDataBase();
       }
 
-    
+
 
       private async Task InitializeAsync()
       {
@@ -66,14 +67,17 @@ namespace ReviewStatus.ViewModels
       #region command methods
       internal void ChooseFileMethod()
       {
+         MinimizeWindow(this, new EventArgs());
          ChosenFile = ideaServices.ChoosePrimaryFile();
+         activateWindow(this, new EventArgs());
          activateWindow(this, new EventArgs());
       }
 
-     public async Task  RunMethod()
+      public async Task RunMethod()
       {
          try
          {
+            MinimizeWindow(this, new EventArgs());
             ideaServices.ShowWindow();
             if (isChecked)
             {
@@ -83,7 +87,7 @@ namespace ReviewStatus.ViewModels
             {
                ideaServices.Run(chosenFile, Convert.ToInt32(selectedNumberOfFieldsToAdd), DefaultStatusName);
             }
-            activateWindow(this,new EventArgs());
+            activateWindow(this, new EventArgs());
             MessageBox.Show("הסתיים בהצלחה");
          }
          catch (Exception ex)
@@ -91,8 +95,8 @@ namespace ReviewStatus.ViewModels
 
             MessageBox.Show(ex.Message + "On Run method");
          }
- 
-         
+
+
       }
       #endregion
 
@@ -133,12 +137,13 @@ namespace ReviewStatus.ViewModels
       public bool IsChecked
       {
          get { return isChecked; }
-         set {
+         set
+         {
             if (isChecked != value)
             {
                isChecked = value;
                OnPropertyChanged();
-            }         
+            }
          }
       }
 
@@ -146,7 +151,8 @@ namespace ReviewStatus.ViewModels
       public object SelectedNumberOfFieldsToAdd
       {
          get { return selectedNumberOfFieldsToAdd; }
-         set {
+         set
+         {
             //if (value==null)
             //{
             //   selectedNumberOfFieldsToAdd = 0;
@@ -156,7 +162,7 @@ namespace ReviewStatus.ViewModels
                selectedNumberOfFieldsToAdd = value;
                OnPropertyChanged();
             }
-            
+
          }
       }
 
@@ -175,7 +181,7 @@ namespace ReviewStatus.ViewModels
          }
       }
 
-      private string commentFieldLength="50";
+      private string commentFieldLength = "50";
       public string CommentFieldLength
       {
          get { return commentFieldLength; }

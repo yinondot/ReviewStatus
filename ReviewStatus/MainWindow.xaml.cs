@@ -29,9 +29,33 @@ namespace ReviewStatus
          InitializeComponent();
          vm.activateWindow += delegate (object sender, EventArgs e)
            {
+              //if (!this.IsVisible)
+              //{
+              //   this.Show();
+              //}
+
+              //if (this.WindowState == WindowState.Minimized)
+              //{
+              //   this.WindowState = WindowState.Normal;
+              //}
+
+           
+            //  this.WindowState = WindowState.Minimized;
+              this.WindowState = WindowState.Normal;
               this.Activate();
+              //this.Topmost = true;  // important
+              //this.Topmost = false; // important
+              //this.Focus();  
+              // important
+
            };
-         
+
+         vm.MinimizeWindow += delegate (object sender, EventArgs e)
+         {
+
+            this.WindowState = WindowState.Minimized;
+         };
+
       }
 
     
