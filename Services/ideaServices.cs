@@ -25,7 +25,7 @@ namespace Services
            string temp= commonDialogs.FileExplorer();
             if (temp != "")
             {
-               client.OpenDatabase(temp);
+               client.OpenDatabase(temp); 
             }
            
             return temp;

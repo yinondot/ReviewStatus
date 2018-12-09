@@ -23,7 +23,7 @@
          
         </Label>-->
         <Label Style="{StaticResource lblSimple}" Content="סקירת סטאטוס" HorizontalAlignment="Stretch" Margin="30,25,48,0" FontSize="26" FontWeight="DemiBold" Background="#00B8860B" Height="Auto">
-        
+
         </Label>
 
       </StackPanel>
@@ -49,18 +49,21 @@
         <ColumnDefinition Width="5*" />
         <ColumnDefinition Width="5*" />
       </Grid.ColumnDefinitions>
-      <Label x:Name="lblHowManyFields" Style="{StaticResource lblSimple}" Content="כמה שדות ר&quot;מ להוסיף" />
+      <Label x:Name="lblHowManyFields" Style="{StaticResource lblSimple}">
+        <AccessText TextWrapping="Wrap" Text="כמה שדות רב מצביים-ר&quot;מ להוסיף" />
+      </Label>
       <ComboBox x:Name="cbHowManyFields" Grid.Column="1" Style="{StaticResource cbSimple}" ItemsSource="{Binding NumberOfFields}" Grid.ColumnSpan="2" SelectedValue="{Binding SelectedNumberOfFieldsToAdd, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
     <Grid>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="5*" />
-        <ColumnDefinition Width="5*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      
       </Grid.ColumnDefinitions>
-      <Label x:Name="lblDefaultName" Style="{StaticResource lblSimple}">
+      <Label x:Name="lblDefaultName" Style="{StaticResource lblSimple}" Margin="30,10,0,10">
         <AccessText TextWrapping="Wrap" Text="שם ברירת המחדל לשדה ר&quot;מ [Status]" />
       </Label>
-      <TextBox x:Name="tbDedaultFieldName" Grid.Column="1" Style="{StaticResource tbSimple}" Text="{Binding DefaultStatusName, UpdateSourceTrigger=PropertyChanged}" />
+      <TextBox x:Name="tbDedaultFieldName" Grid.Column="2" Style="{StaticResource tbSimple}" Text="{Binding DefaultStatusName, UpdateSourceTrigger=PropertyChanged}" Margin="30,15,40,15" />
     </Grid>
 
     <CheckBox x:Name="cbAddCommentField" Style="{StaticResource ckbSimple}" Content="האם להוסיף שדות הערות" IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}" />
